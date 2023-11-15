@@ -1,0 +1,191 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3 *ngIf="formData._id == null">
+                    Agregar Cliente
+                </h3>
+                <h3 *ngIf="formData._id != null">
+                    Modificar Cliente
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Formulario de Clientes
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <form (ngSubmit)="save()">
+                <div class="card">
+                    <div class="card-header pb-0">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <!--
+                                    <h5>
+                                        Mis workspaces
+                                    </h5>
+                                -->
+
+                                <span>
+                                    aqui podra visualizar los registros de Clientes que se han creado
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-6">
+
+
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">
+                                        Escriba el nombre
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="tag"></i>
+                                        </span>
+                                        <input class="form-control" type="text"  name="name" [(ngModel)]="formData.name" >
+                                    </div>
+                                </div>
+        
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">
+                                        Escriba el Apellido
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="tag"></i>
+                                        </span>
+                                        <input class="form-control" type="text"  name="last_name" [(ngModel)]="formData.last_name" >
+                                    </div>
+                                </div>
+        
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">
+                                        Escriba el Número de identificación
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="tag"></i>
+                                        </span>
+                                        <input class="form-control" type="number"  name="identification_number" [(ngModel)]="formData.identification_number" >
+                                    </div>
+                                </div>
+        
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">
+                                        Escriba el Número de telefono
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="tag"></i>
+                                        </span>
+                                        <input class="form-control" type="number"  name="phone" [(ngModel)]="formData.phone" >
+                                    </div>
+                                </div>
+        
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">
+                                        Escriba el Número de email
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="tag"></i>
+                                        </span>
+                                        <input class="form-control" type="email"  name="email" [(ngModel)]="formData.email" email >
+                                    </div>
+                                </div>
+        
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">
+                                        Indique el genero
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="list"></i>
+                                        </span>
+                                        <select name="gender" class="form-control" [(ngModel)]="formData.gender">
+                                            <option [value]="null"> Seleccionar</option>
+                                            <option value="FEMALE"> FEMENINO</option>
+                                            <option value="MALE"> MASCULINO</option>
+                                        </select>
+                                    </div>
+                                </div>
+        
+                                
+                                <!-- Campo fecha de nacimiento -->
+                                <app-input-date 
+                                    name="fecha_nacimiento" 
+                                    [(ngModel)]="formData.birth_date"
+                                    label="Fecha de Nacimiento"
+                                    helpText="Ingrese la fecha de nacimiento aqui" 
+                                    #customerBirthDay="ngModel" 
+                                    >
+                                </app-input-date>
+
+                            </div>
+                            <div class="col-6">
+
+                                
+
+                                <div class="mb-3 m-form__group">
+                                    <label class="form-label">
+                                        Tiene Observaciones?
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i data-feather="tag"></i>
+                                        </span>
+                                        <textarea name="remarks" class="form-control" cols="30" rows="10" [(ngModel)]="formData.remarks"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <!-- Campo fecha de ingreso -->
+                                <app-input-date 
+                                    name="fecha_ingreso" 
+                                    [(ngModel)]="formData.entry_date"
+                                    label="Fecha de Ingreso"
+                                    helpText="Ingrese la fecha de ingreso aqui" 
+                                    #entryDate="ngModel" 
+                                    >
+                                </app-input-date>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-light" routerLink="/admin/users">
+                            <i class="icon-back-left"></i> &nbsp; Cancelar
+                        </a>
+                        &nbsp;
+                        <button class="btn btn-primary m-r-15" type="submit">
+                            <i class="icon-save"></i> &nbsp; Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3 >
+                    Formulario de Rutinas
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Formulario de Rutinas
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <form  (ngSubmit)="save()">
+                <div class="card">
+                    <div class="card-header pb-0">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <!--
+                                    <h5>
+                                        Mis workspaces
+                                    </h5>
+                                -->
+
+                                <span>
+                                    aqui podra visualizar los registros de Rutinas que se han creado
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        
+                        <div class="mb-3 m-form__group">
+                            <label class="form-label">
+                                Escriba el nombre
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i data-feather="tag"></i>
+                                </span>
+                                <input class="form-control" type="text"  name="name"  [(ngModel)]="formData.name" >
+                            </div>
+                        </div>
+
+                        <div class="mb-3 m-form__group">
+                            <label class="form-label">
+                                Escriba una descripción
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i data-feather="tag"></i>
+                                </span>
+                                <textarea name="description" class="form-control" cols="30" rows="10" [(ngModel)]="formData.description"></textarea>
+                            </div>
+                        </div>
+
+                        
+                        <hr>
+
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-9">
+                                <h4 class="text-center">
+                                    Ejercicios
+                                </h4>
+                            </div>
+                            <div class="col-3 text-right">
+
+                                <button class="btn btn-primary m-r-15" type="button" (click)="addItem()">
+                                    <i class="icon-plus"></i> &nbsp; Agregar Item
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <br>
+
+                        <ng-container *ngFor="let item of formData.exercises; let i = index;">
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="mb-3 m-form__group">
+                                        <label class="form-label">
+                                            Nombre del ejercicio
+                                        </label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i data-feather="tag"></i>
+                                            </span>
+                                            <input class="form-control" type="text"  name="exercise_name_{{i}}" placeholder="ejemplo: Deltoides" [(ngModel)]="item.name"  >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+
+                                    <div class="mb-3 m-form__group">
+                                        <label class="form-label">
+                                            Numero de repeticiones
+                                        </label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i data-feather="tag"></i>
+                                            </span>
+                                            <input class="form-control" type="text"  name="exercise_repetitions_{{i}}"  [(ngModel)]="item.repetitions" >
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-2">
+                                    <br>
+                                    <button class="btn btn-danger m-r-15" type="button" (click)="removeItem(i)">
+                                        <i class="icon-trash"></i> &nbsp; Eliminar Item
+                                    </button>
+                                </div>
+                            </div>
+                            
+                        </ng-container>
+                            
+
+
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-light" routerLink="/admin/users">
+                            <i class="icon-back-left"></i> &nbsp; Cancelar
+                        </a>
+                        &nbsp;
+                        <button class="btn btn-primary m-r-15" type="submit">
+                            <i class="icon-save"></i> &nbsp; Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

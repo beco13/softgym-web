@@ -1,0 +1,121 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3>
+                    Clientes
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/admin/customers">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Clientes
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="card">
+                <div class="card-header pb-0">
+
+                    <div class="row">
+                        <div class="col-8">
+                            <!--
+                                <h5>
+                                    Mis workspaces
+                                </h5>
+                            -->
+                            <span>
+                                aqui podra visualizar todos los clientes registrados en el sistema
+                            </span>
+                        </div>
+                        <div class="col-4 text-right">
+                            <a class="btn btn-primary" routerLink="/admin/customers/add" *ngIf="currentUser.role == 'ADMIN'">
+                                <i class="fa fa-plus"></i> &nbsp;
+                                Nuevo Cliente
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr class="table-active">
+                                    <th>
+                                        Identificación
+                                    </th>
+                                    <th>
+                                        Nombre
+                                    </th>
+                                    <th>
+                                        Correo
+                                    </th>
+                                    <th>
+                                        Telefono
+                                    </th>
+                                    <th>
+                                        Estado
+                                    </th>
+                                    <th>
+                                        Observaciones
+                                    </th>
+                                    <th>
+                                        Opciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr *ngFor="let row of rows">
+                                    <td>
+                                        {{row.identification_number}}
+                                    </td>
+                                    <td>
+                                        {{row.name}} {{row.last_name}}
+                                    </td>
+                                    <td>
+                                        {{row.email}}
+                                    </td>
+                                    <td>
+                                        {{row.phone}}
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-success" *ngIf="row.status === 'ACTIVE'">ACTIVO</span>
+                                        <span class="badge badge-danger" *ngIf="row.status === 'SUSPENDED'">SUSPENDIDO</span>
+                                    </td>
+                                    <td>
+                                        {{row.remarks}}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-light" routerLink="/admin/customers/{{row._id}}/edit" *ngIf="currentUser.role == 'ADMIN'">
+                                            <i class="icon-pencil-alt"></i> &nbsp;  Editar
+                                        </a>
+                                        <a class="btn btn-light" routerLink="/admin/customers/{{row._id}}/view">
+                                            <i class="icon-zoom-in"></i> &nbsp;  Detalles
+                                        </a>
+                                    </td>
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

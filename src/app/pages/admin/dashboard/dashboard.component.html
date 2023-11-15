@@ -1,0 +1,300 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3>Dashboard</h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"> 
+                        <a class="home-item" href="index.html">
+                        <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active"> Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid default-dash">
+
+    <div class="row">
+        <div class="col-xl-12 col-md-12">
+            <div class="card profile-greeting">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="greeting-user">
+                                <h1>Hola, {{currentUser?.username}}</h1>
+                                <p>
+                                    Bienvenido de nuevo!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cartoon-img">
+                        <img class="img-fluid" src="/assets/images/images.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="currentUser?.role == 'ADMIN'">
+            
+        <div class="row">
+            <div class="col-xl-4 col-md-6 dash-xl-50">
+                <div class="card pb-0 o-hidden earning-card">
+                    <div class="card-header earning-back"></div>
+                    <div class="card-body p-0">
+                        <div class="earning-content">
+                            <img class="img-fluid" src="/assets/images/avatar.jpg" alt="">
+                            <a
+                                href="blog-single.html">
+                                <h4>Ingresos del Dia</h4>
+                            </a>
+                            <span>15 Novimbre</span>
+                            <h6>{{moneyCollectionToday | currency}}</h6>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6 dash-xl-50">
+                <div class="card pb-0 o-hidden earning-card">
+                    <div class="card-header earning-back"></div>
+                    <div class="card-body p-0">
+                        <div class="earning-content">
+                            <img class="img-fluid" src="/assets/images/avatar.jpg" alt="">
+                            <a
+                                href="blog-single.html">
+                                <h4>Ingresos de la  Semana</h4>
+                            </a>
+                            <span>13 de Noviembre  al 19 de Noviembre</span>
+                            <h6>{{moneyCollectionWeek | currency}}</h6>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6 dash-xl-50">
+                <div class="card pb-0 o-hidden earning-card">
+                    <div class="card-header earning-back"></div>
+                    <div class="card-body p-0">
+                        <div class="earning-content">
+                            <img class="img-fluid" src="/assets/images/avatar.jpg" alt="">
+                            <a
+                                href="blog-single.html">
+                                <h4>Ingresos del Mes</h4>
+                            </a>
+                            <span>Noviembre 2023</span>
+                            <h6>{{moneyCollectionMonth | currency}}</h6>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            
+            <div class="col-xl-4 col-md-4 ">
+                <div class="card ongoing-project">
+                    <div class="card-header card-no-border">
+                        <div class="media media-dashboard">
+                            <div class="media-body">
+                                <h5 class="mb-0">
+                                    Mensualidades expiran esta semana
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="table-responsive custom-scrollbar">
+                            <table class="table table-bordernone">
+                                <thead>
+                                    <tr>
+                                        <th> <span> Cliente </span></th>
+                                        <th> <span>Fecha Expiración</span></th>
+                                        <th> <span> Último Pago </span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <ng-container *ngFor="let rom of customersWhoseMembershipExpiresThisWeek">
+                                        <tr>
+                                            <td>
+                                                <div class="media">
+                                                    <div class="square-box me-2">
+                                                        <img class="img-fluid b-r-5" *ngIf="rom.customer.gender == 'MALE'" src="/assets/images/avtar/boy.png" alt="">
+                                                        <img class="img-fluid b-r-5" *ngIf="rom.customer.gender == 'FEMALE'" src="/assets/images/avtar/girl.png" alt="">
+                                                    </div>
+                                                    <div class="media-body ps-2">
+                                                        <div class="avatar-details">
+                                                            <a href="product-page.html">
+                                                                <h6>
+                                                                    {{rom.customer.name}} {{rom.customer.last_name}}
+                                                                </h6>
+                                                            </a>
+                                                            <span> 
+                                                                {{rom.customer.phone}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="img-content-box">
+                                                <h6>{{rom.membership.expiration_date | date}}</h6>
+                                                <span>{{rom.membership.expiration_date | dateCalendar}}</span>
+                                            </td>
+                                            <td>
+                                                <h6>{{rom.created | date}}</h6>
+                                                <span>{{rom.total_amount | currency}}</span>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xl-4 col-md-4 ">
+                <div class="card ongoing-project">
+                    <div class="card-header card-no-border">
+                        <div class="media media-dashboard">
+                            <div class="media-body">
+                                <h5 class="mb-0">
+                                    Clientes que pagaron el dia hoy
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="table-responsive custom-scrollbar">
+                            <table class="table table-bordernone">
+                                <thead>
+                                    <tr>
+                                        <th> <span> Cliente </span></th>
+                                        <th> <span> Monto </span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    
+                                    <ng-container *ngFor="let rom of payingCustomersForToday">
+                                        <tr>
+                                            <td>
+                                                <div class="media">
+                                                    <div class="square-box me-2">
+                                                        <img class="img-fluid b-r-5" *ngIf="rom.customer.gender == 'MALE'" src="/assets/images/avtar/boy.png" alt="">
+                                                        <img class="img-fluid b-r-5" *ngIf="rom.customer.gender == 'FEMALE'" src="/assets/images/avtar/girl.png" alt="">
+                                                    </div>
+                                                    <div class="media-body ps-2">
+                                                        <div class="avatar-details">
+                                                            <a href="product-page.html">
+                                                                <h6>
+                                                                    {{rom.customer.name}} {{rom.customer.last_name}}
+                                                                </h6>
+                                                            </a>
+                                                            <span> 
+                                                                {{rom.customer.phone}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h6>{{rom.created | date}}</h6>
+                                                <span>{{rom.total_amount | currency}}</span>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xl-4 col-md-4 ">
+                <div class="card ongoing-project">
+                    <div class="card-header card-no-border">
+                        <div class="media media-dashboard">
+                            <div class="media-body">
+                                <h5 class="mb-0">
+                                    Clientes que renovaron hoy
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="table-responsive custom-scrollbar">
+                            <table class="table table-bordernone">
+                                <thead>
+                                    <tr>
+                                        <th> <span> Cliente </span></th>
+                                        <th> <span>Fecha Expiración</span></th>
+                                        <th> <span> Último Pago </span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    
+                                    <ng-container *ngFor="let rom of customersWhoRenewedToday">
+                                        <tr>
+                                            <td>
+                                                <div class="media">
+                                                    <div class="square-box me-2">
+                                                        <img class="img-fluid b-r-5" *ngIf="rom.customer.gender == 'MALE'" src="/assets/images/avtar/boy.png" alt="">
+                                                        <img class="img-fluid b-r-5" *ngIf="rom.customer.gender == 'FEMALE'" src="/assets/images/avtar/girl.png" alt="">
+                                                    </div>
+                                                    <div class="media-body ps-2">
+                                                        <div class="avatar-details">
+                                                            <a href="product-page.html">
+                                                                <h6>
+                                                                    {{rom.customer.name}} {{rom.customer.last_name}}
+                                                                </h6>
+                                                            </a>
+                                                            <span> 
+                                                                {{rom.customer.phone}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="img-content-box">
+                                                <h6>{{rom.membership.expiration_date | date}}</h6>
+                                                <span>{{rom.membership.expiration_date | dateCalendar}}</span>
+                                            </td>
+                                            <td>
+                                                <h6>{{rom.created | date}}</h6>
+                                                <span>{{rom.total_amount | currency}}</span>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </ng-container>
+
+
+
+</div>
+<!-- Container-fluid Ends-->

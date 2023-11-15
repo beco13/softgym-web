@@ -1,0 +1,201 @@
+<div class="card">
+    <div class="card-header pb-0">
+
+        <div class="row">
+            <div class="col-8">
+                <h5>
+                    Rutinas
+                </h5>
+                <span>
+                    aqui podra visualizar todas las rutinas asignadas al cliente
+                </span>
+            </div>
+            <div class="col-4 text-right">
+                <button class="btn btn-primary" type="button" (click)="openModalForm()">
+                    <i class="fa fa-plus"></i> &nbsp;
+                    Registrar nueva Rutina
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr class="table-active">
+                        <th>
+                            Activo
+                        </th>
+                        <th>
+                            Observaciones
+                        </th>
+                        <th>
+                            Rutina
+                        </th>
+                        <th>
+                            Instructor
+                        </th>
+                        <th>
+                            Fecha de Registro
+                        </th>
+                        <th>
+                            Opciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <ng-container *ngFor="let row of rows">
+                        <tr>
+                            <td>
+                                <i *ngIf="row.is_active" class="fa fa-check-circle"></i>
+                            </td>
+                            <td>
+                                <p>
+                                    {{row.remarks}}
+                                </p>
+                            </td>
+                            <td>
+                                {{row.routine.name}}
+                            </td>
+                            <td>
+                                {{row.user_coach.username}}
+                            </td>
+                            <td>
+                                {{row.created | dateTime}}
+                            </td>
+                            <td>
+                                <button class="btn btn-light" type="button" (click)="setAsActive(row)" *ngIf="row.is_active == false">
+                                    <i class="fa fa-check-circle"></i> &nbsp; Activar
+                                </button>
+                                &nbsp;
+                                <button class="btn btn-danger" type="button" (click)="askToRemove(row)">
+                                    <i class="fa fa-trash"></i> &nbsp; Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="modalForm" #modal tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <form class="form" #modalForm="ngForm" ngNativeValidate (ngSubmit)="saveForm()">
+
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" style="width: 100%;">
+                        <strong class="text-warning">
+                            Registrar Rutina
+                        </strong>
+                    </h4>
+                    <!--
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    -->
+                </div>
+
+                <div class="modal-body" *ngIf="formData != null">
+
+                    <div class="row">
+                        <div class="col-6">
+
+                            <div class="mb-3 m-form__group">
+                                <label class="form-label">
+                                    Seleccione la rutina
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="list"></i>
+                                    </span>
+                                    <select name="service" class="form-control" [(ngModel)]="formData.routine_id">
+                                        <option [value]="null"> Seleccionar</option>
+
+                                        <ng-container *ngFor="let row of routines">
+                                            <option [value]="row._id"> {{ row.name}} - {{ row.description}}</option>
+                                        </ng-container>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+
+
+                            <div class="mb-3 m-form__group">
+                                <label class="form-label">
+                                    Seleccione el Instructor
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="list"></i>
+                                    </span>
+                                    <select name="service" class="form-control" [(ngModel)]="formData.user_coach_id">
+                                        <option [value]="null"> Seleccionar</option>
+
+                                        <ng-container *ngFor="let row of users">
+                                            <option [value]="row._id"
+                                                *ngIf="row.role == 'COACH' && row.status == 'ACTIVE'"> {{ row.username}}
+                                            </option>
+                                        </ng-container>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="mb-3 m-form__group">
+                        <label class="form-label">
+                            Observaciones
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i data-feather="tag"></i>
+                            </span>
+                            <textarea name="remarks" id="remarks" cols="30" rows="10" class="form-control"
+                                [(ngModel)]="formData.remarks"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="text-center" style="width: 100%;">
+
+                        <button class="btn btn-light" data-dismiss="modal">
+                            <i class="fa fa-times"></i> &nbsp; Cancelar
+                        </button>
+
+                        &nbsp;
+
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-save"></i> &nbsp; Guardar
+                        </button>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

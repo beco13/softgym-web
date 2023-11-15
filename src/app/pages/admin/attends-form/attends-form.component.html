@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3 >
+                    Formulario de Asistencias
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Formulario de Asistencias
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <form (ngSubmit)="save()">
+                <div class="card">
+                    <div class="card-header pb-0">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <!--
+                                    <h5>
+                                        Mis workspaces
+                                    </h5>
+                                -->
+
+                                <span>
+                                    aqui podra visualizar los registros de Asistencias que se han creado
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        
+                        <div class="mb-3 m-form__group">
+                            <label class="form-label">
+                                Seleccione el cliente
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i data-feather="list"></i>
+                                </span>
+                                <select name="customer" class="form-control" [(ngModel)]="formData.customer_id" required >
+                                    <option [value]="null"> Seleccionar</option>
+                                    <ng-container *ngFor="let row of customers">
+                                        <option *ngIf="row.status == 'ACTIVE'" [value]="row._id"> {{row.name}}  {{row.last_name}} </option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-light" routerLink="/admin/attends">
+                            <i class="icon-back-left"></i> &nbsp; Cancelar
+                        </a>
+                        &nbsp;
+                        <button class="btn btn-primary m-r-15" type="submit">
+                            <i class="icon-save"></i> &nbsp; Registrar Ingreso
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

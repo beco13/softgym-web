@@ -1,0 +1,102 @@
+/* You can add global styles to this file, and also import other style files */
+
+.badge-light{
+    color: black;
+}
+
+table th,
+table td{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.modal-footer{
+    display: block;
+}
+
+.show-hide {
+    z-index: 3;
+    span{
+        position: relative;
+        top: 5px;
+    }
+}
+
+.mb-3{
+    display: block;
+}
+
+.help-block {
+    font-size: 12px;
+    margin-bottom: 0;
+    color: #999999;
+    font-weight: 300;
+}
+
+legend{
+    border-bottom: 1px dotted #10539c;
+}
+
+.page-wrapper.compact-wrapper .page-body-wrapper .page-body{
+    min-height: calc(100vh - 124px);
+}
+
+.page-wrapper .page-body-wrapper .page-title h3{
+    color: #DC5766;
+}
+
+.btn {
+    [class^="icon-"]{
+        position: relative;
+        top: 1px;
+    }
+}
+
+.loader-wrapper{
+    background: #ffffff87;
+}
+
+.invalid-feedback{
+    display: block;
+}
+
+/*********
+* LOGIN 
+*********/
+
+.login-form .btn{
+    display: inline-block;
+}
+
+.login-form .form-group label{
+    text-transform: none;
+}
+
+.login-form{
+    border-radius: 17px;
+}
+
+.login-form p.help-block{
+    text-align: left;
+}
+
+/*********
+* SIDEBAR 
+*********/
+.icon-sidebar{
+    height: 30%;
+    padding: none;
+    
+}
+
+/*********
+* ICA TAXES 
+*********/
+.input-group-ica{
+    margin: 10px;
+    border-radius: 0;
+}

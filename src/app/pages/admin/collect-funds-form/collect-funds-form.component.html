@@ -1,0 +1,126 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3 >
+                    Formulario de Recaudos
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Formulario de Recaudos
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <form (ngSubmit)="save()" >
+                <div class="card">
+                    <div class="card-header pb-0">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <!--
+                                    <h5>
+                                        Mis workspaces
+                                    </h5>
+                                -->
+
+                                <span>
+                                    aqui podra visualizar los registros de Recaudos que se han creado
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+
+                        <div class="mb-3 m-form__group">
+                            <label class="form-label">
+                                Indique el Servicio a vender
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i data-feather="list"></i>
+                                </span>
+                                <select name="service" class="form-control" [(ngModel)]="formData.service" (change)="listenService()" >
+                                    <option [value]="null"> Seleccionar</option>
+                                    <option value="CLASS"> Clase</option>
+                                    <option value="MEMBERSHIP"> Membresia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-3 m-form__group">
+                            <label class="form-label">
+                                Seleccione el cliente
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i data-feather="list"></i>
+                                </span>
+                                <select name="customer" class="form-control" [(ngModel)]="formData.customer_id" >
+                                    <option [value]="null"> Seleccionar</option>
+                                    <ng-container *ngFor="let row of customers;">
+                                        <option value="{{row._id}}"> {{row.name}} {{row.last_name}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Campo fecha de nacimiento -->
+                        <app-input-date 
+                            class="mb-3"
+                            name="fecha_inicio_vigencia" 
+                            [(ngModel)]="formData.created"
+                            label="Fecha de Inicio"
+                            helpText="Indique la fecha en que inicia la membresia o la fecha de la clase" 
+                            #customerBirthDay="ngModel" 
+                            [disabled]="formData.service == 'CLASS'"
+                            >
+                        </app-input-date>
+
+
+                        
+                        <div class="mb-3 m-form__group">
+                            <label class="form-label">
+                                Escriba el monto a recaudar de esta venta
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i data-feather="tag"></i>
+                                </span>
+                                <input class="form-control" type="number"  name="amount" [(ngModel)]="formData.total_amount" >
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-light" routerLink="/admin/collect-funds">
+                            <i class="icon-back-left"></i> &nbsp; Cancelar
+                        </a>
+                        &nbsp;
+                        <button class="btn btn-primary m-r-15" type="submit">
+                            <i class="icon-save"></i> &nbsp; Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

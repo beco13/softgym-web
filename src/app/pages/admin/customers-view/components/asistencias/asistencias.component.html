@@ -1,0 +1,64 @@
+
+<div class="card">
+    <div class="card-header pb-0">
+
+        <div class="row">
+            <div class="col-10">
+                <h5>
+                    Asistencias
+                </h5>
+                <span>
+                    Aqui puede visualizar los Asistencias
+                </span>
+            </div>
+            <div class="col-2 text-right">
+                <!--
+                    <a class="btn btn-primary" routerLink="/admin/attends/add">
+                        <i class="icon-plus"></i> &nbsp; Registrar Ingreso
+                    </a>
+                -->
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr class="table-active">
+                        <th>Fecha Ingreso</th>
+                        <th>Fecha Salida</th>
+                        <th>Estado</th>
+                        <th>Fecha de Registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <ng-container *ngFor="let row of rows">
+                        <tr >
+                            <td>
+                                {{row.entry_date | dateCalendar}}
+                            </td>
+                            <td>
+                                <span *ngIf="row.departure_date != null">
+                                    {{row.departure_date | dateCalendar}}    
+                                </span>
+                                <span *ngIf="row.departure_date == null">
+                                    Pendiente
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge badge-success" *ngIf="row.status === 'ITS_HERE'" >ESTA AQUI</span>
+                                <span class="badge badge-danger" *ngIf="row.status === 'ITS_GONE'" >SE FUE</span>
+                            </td>
+                            <td>
+                                {{row.created | dateTime}}
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

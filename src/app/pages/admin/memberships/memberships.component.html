@@ -1,0 +1,98 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3>
+                    Mensualidades
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Mensualidades
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="card">
+                <div class="card-header pb-0">
+
+                    <div class="row">
+                        <div class="col-10">
+                            <!--
+                                <h5>
+                                    Mis workspaces
+                                </h5>
+                            -->
+                            
+                            <span>
+                                Aqui puede visualizar los mensualidades que estan registrados en el sistema
+                            </span>
+                        </div>
+                        <div class="col-2 text-right">
+                            <!--
+                            <a class="btn btn-primary" routerLink="/admin/attends/add">
+                                <i class="icon-plus"></i> &nbsp; Registrar Ingreso
+                            </a>
+                            -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr class="table-active">
+                                    <th>Cliente</th>
+                                    <th>Fecha de Inicio</th>
+                                    <th>Fecha de Expiracion</th>
+                                    <th>Fecha de Registro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <ng-container *ngFor="let row of rows">
+                                    <tr >
+                                        <th>
+                                            {{row.customer.name}} {{row.customer.last_name}}
+                                        </th>
+                                        
+                                        <td>
+                                            {{row.start_date | dateCalendar}}
+
+                                        </td>
+                                        
+                                        <td>
+                                            {{row.expiration_date | dateCalendar}}
+                                        </td>
+                                        
+                                        <td>
+                                            {{row.created | dateTime}}
+                                        </td>
+                                        
+                                    </tr>
+                                </ng-container>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

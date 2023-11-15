@@ -1,0 +1,108 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3>
+                    Recaudos
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Recaudos
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="card">
+                <div class="card-header pb-0">
+
+                    <div class="row">
+                        <div class="col-10">
+                            <!--
+                                <h5>
+                                    Mis workspaces
+                                </h5>
+                            -->
+                            
+                            <span>
+                                Aqui puede visualizar los Recaudos que estan registrados en el sistema
+                            </span>
+                        </div>
+                        <div class="col-2 text-right">
+                            <a class="btn btn-primary" routerLink="/admin/collect-funds/add">
+                                <i class="icon-plus"></i> &nbsp; Registrar
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr class="table-active">
+                                    <th>Concepto</th>
+                                    <th>Monto</th>
+                                    <th>Usuario</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Fecha Inicio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let row of rows">
+                                    <tr >
+                                        <th>
+                                            <span *ngIf="row.service == 'MEMBERSHIP'">
+                                                Membresia
+                                            </span>
+                                            <span *ngIf="row.service == 'CLASS'">
+                                                Clase
+                                            </span>
+                                        </th>
+                                        <td>
+                                            {{row.total_amount | currency}}
+                                        </td>
+                                        <td>
+                                            {{row.user.username}}
+                                        </td>
+                                        <td>
+                                            {{row.customer.name}} {{row.customer.last_name}}
+                                        </td>
+                                        <td>
+                                            {{row.created | dateTime}}
+                                        </td>
+                                        <td>
+                                            <span *ngIf="row.service == 'MEMBERSHIP'">
+                                                {{row.membership.start_date | dateTime}}
+                                            </span>
+                                            <span *ngIf="row.service == 'CLASS'">
+                                                {{row.attend.entry_date | dateTime}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

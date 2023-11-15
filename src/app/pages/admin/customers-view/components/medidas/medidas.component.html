@@ -1,0 +1,263 @@
+
+<div class="card">
+    <div class="card-header pb-0">
+
+        <div class="row">
+            <div class="col-8">
+                <h5>
+                    Medidas
+                </h5>
+                <span>
+                    aqui podra visualizar todas las medidas registradas en el sistema
+                </span>
+            </div>
+            <div class="col-4 text-right">
+                <button class="btn btn-primary" type="button" (click)="openModalForm()">
+                    <i class="fa fa-plus"></i> &nbsp;
+                    Registrar Avances
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <ng-container *ngFor="let row of rows">
+
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr class="table-active">
+                            <th>
+                                Observaciones
+                            </th>
+                            <th>
+                                Fecha
+                            </th>
+                            <th>
+                                Opciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td>
+                                <p>
+                                    {{row.remarks}}
+                                </p>
+                            </td>
+                            <td>
+                                {{row.created | dateTime}}
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" type="button" (click)="askToRemove(row)">
+                                    <i class="fa fa-trash"></i> &nbsp; Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Hombro
+                            </th>
+                            <th>
+                                Cintura
+                            </th>
+                            <th>
+                                Cuello
+                            </th>
+                            <th>
+                                Biceps
+                            </th>
+                            <th>
+                                Gluteos
+                            </th>
+                            <th>
+                                Pantorrilla
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {{row.shoulder}}
+                            </td>
+                            <td>
+                                {{row.waist}}
+                            </td>
+                            <td>
+                                {{row.collar}}
+                            </td>
+                            <td>
+                                {{row.biceps}}
+                            </td>
+                            <td>
+                                {{row.buttocks}}
+                            </td>
+                            <td>
+                                {{row.calf}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br>
+                <br>
+
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="modalForm" #modal tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <form class="form" #modalForm="ngForm" ngNativeValidate (ngSubmit)="saveForm()">
+
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" style="width: 100%;">
+                        <strong class="text-warning">
+                            Registrar Medidas
+                        </strong>
+                    </h4>
+                    <!--
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    -->
+                </div>
+
+                <div class="modal-body" *ngIf="formData != null">
+
+                    <div class="row">
+                        <div class="col-6">
+
+                            <div class="mb-3 m-form__group">
+                                <label class="form-label">
+                                    Hombro
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="tag"></i>
+                                    </span>
+                                    <input class="form-control" type="number"  name="hombro" required [(ngModel)]="formData.shoulder" >
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 m-form__group">
+                                <label class="form-label">
+                                    Cintura
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="tag"></i>
+                                    </span>
+                                    <input class="form-control" type="number"  name="hombro" required [(ngModel)]="formData.waist">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 m-form__group">
+                                <label class="form-label">
+                                    Cuello
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="tag"></i>
+                                    </span>
+                                    <input class="form-control" type="number"  name="hombro" required [(ngModel)]="formData.collar">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-6">
+
+                            
+                            <div class="mb-3 m-form__group">
+                                <label class="form-label">
+                                    Biceps
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="tag"></i>
+                                    </span>
+                                    <input class="form-control" type="number"  name="hombro" required [(ngModel)]="formData.biceps">
+                                </div>
+                            </div>
+
+
+                            
+                            <div class="mb-3 m-form__group">
+                                <label class="form-label">
+                                    Gluteos
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="tag"></i>
+                                    </span>
+                                    <input class="form-control" type="number"  name="hombro" required [(ngModel)]="formData.buttocks">
+                                </div>
+                            </div>
+
+                            
+                            <div class="mb-3 m-form__group">
+                                <label class="form-label">
+                                    Pantorrilla
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="tag"></i>
+                                    </span>
+                                    <input class="form-control" type="number"  name="hombro" required [(ngModel)]="formData.calf">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="mb-3 m-form__group">
+                        <label class="form-label">
+                            Observaciones
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i data-feather="tag"></i>
+                            </span>
+                            <textarea name="remarks" id="remarks" cols="30" rows="10" class="form-control" [(ngModel)]="formData.remarks"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="text-center" style="width: 100%;">
+
+                        <button class="btn btn-light" data-dismiss="modal"  >
+                            <i class="fa fa-times"></i> &nbsp; Cancelar
+                        </button>
+
+                        &nbsp;
+
+                        <button  class="btn btn-primary" type="submit">
+                            <i class="fa fa-save"></i> &nbsp; Guardar
+                        </button>
+                       
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+

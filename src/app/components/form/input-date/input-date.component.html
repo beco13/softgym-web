@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label *ngIf="label != null">
+        {{label}}
+    </label>
+    <div class="input-group">
+        <span class="input-group-text" *ngIf="iconClass != null">
+            <i [ngClass]="iconClass"></i>
+        </span>
+        <input class="form-control" type="date" [required]="required" #InputDate>
+    </div>
+    <p class="help-block" *ngIf="helpText != null">{{helpText}}</p>
+</div>

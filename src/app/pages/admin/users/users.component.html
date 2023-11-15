@@ -1,0 +1,109 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3>
+                    Usuarios
+                </h3>
+            </div>
+            <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Usuarios
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="card">
+                <div class="card-header pb-0">
+
+                    <div class="row">
+                        <div class="col-10">
+                            <!--
+                                <h5>
+                                    Mis workspaces
+                                </h5>
+                            -->
+                            
+                            <span>
+                                Aqui puede visualizar los Usuarios que estan registrados en el sistema
+                            </span>
+                        </div>
+                        <div class="col-2 text-right">
+                            <a class="btn btn-primary" routerLink="/admin/users/add">
+                                <i class="icon-plus"></i> &nbsp; Crear nuevo
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr class="table-active">
+                                    <th>Username</th>
+                                    <th>Estado</th>
+                                    <th>Rol</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of rows; let i = index">
+                                    <th>
+                                        {{row.username}}
+                                    </th>
+                                    <th>
+                                        <span class="badge badge-success" *ngIf="row.status === 'ACTIVE'">ACTIVO</span>
+                                        <span class="badge badge-danger" *ngIf="row.status === 'BLOCKED'">BLOQUEADO</span>
+                                    </th>
+                                    <td>
+                                        <span class="badge badge-primary" *ngIf="row.role === 'ADMIN'">ADMINISTRADOR</span>
+                                        <span class="badge badge-secondary" *ngIf="row.role === 'COACH'">ENTRENADOR</span>
+                                    </td>
+                                    <td>
+                                        {{row.created | date}}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-light" routerLink="/admin/users/{{ row._id }}/edit">
+                                                <i class="icon-pencil"></i> &nbsp; Editar
+                                            </a>
+                                            <button class="btn btn-light" type="button" (click)="toogleStatus(row._id)" *ngIf="row.status === 'BLOCKED'">
+                                                <i class="icon-check"></i> &nbsp; Activar
+                                            </button>
+                                            <button class="btn btn-secondary" type="button" (click)="toogleStatus(row._id)" *ngIf="row.status === 'ACTIVE'">
+                                                <i class="icon-close"></i> &nbsp; Desactivar
+                                            </button>
+                                            <!--
+                                            <button class="btn btn-secondary" type="button" (click)="remove(i)">
+                                                <i class="icon-trash"></i> &nbsp; Eliminar
+                                            </button>
+                                            -->
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

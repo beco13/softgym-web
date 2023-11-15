@@ -1,0 +1,173 @@
+<div class="sidebar-wrapper">
+    
+    <div class="logo-wrapper text-center">
+
+        <a routerLink="/admin/dashboard">
+            <img class="img-fluid for-light" src="/assets/logos/main.png">
+            <img class="img-fluid for-dark" src="/assets/images/logo/logo_dark.png">
+        </a>
+
+        <div class="back-btn">
+            <i class="fa fa-angle-left"></i>
+        </div>
+
+    </div>
+
+    <div class="logo-icon-wrapper">
+        <a routerLink="/admin/dashboard">
+            <img class="img-fluid" src="/assets/logos/main.jpg">
+        </a>
+    </div>
+
+    <nav class="sidebar-main">
+
+        <div class="left-arrow" id="left-arrow">
+            <i data-feather="arrow-left"></i>
+        </div>
+
+        <div id="sidebar-menu">
+
+            <ul class="sidebar-links" id="simple-bar" *ngIf="role != null">
+
+                <li class="back-btn">
+                    <a routerLink="/admin/dashboard">
+                        <img class="img-fluid" src="/assets/images/logo/logo-icon.png">
+                    </a>
+                    <div class="mobile-back text-end">
+                        <span>
+                            Back
+                        </span>
+                        <i class="fa fa-angle-right ps-2" aria-hidden="true"></i>
+                    </div>
+                </li>
+
+
+                <ng-container *ngIf="role == 'ADMIN'">
+
+
+                    <!-- Option Dashboard -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                            <span>
+                                Dashboard
+                            </span>
+                        </a>
+                    </li>
+
+                    
+                    <!-- Option Users -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/attends">
+                            <i data-feather="activity"></i>
+                            <span>
+                                Asistencias
+                            </span>
+                        </a>
+                    </li>
+
+                    <!-- Option Users -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/customers">
+                            <i data-feather="user-plus"></i>
+                            <span>
+                                Clientes
+                            </span>
+                        </a>
+                    </li>
+
+                    <!-- Option Users -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/memberships">
+                            <i data-feather="calendar"></i>
+                            <span>
+                                Mensualidades
+                            </span>
+                        </a>
+                    </li>
+
+                    
+                    <!-- Option Users -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/routines">
+                            <i data-feather="check-square"></i>
+                            <span>
+                                Rutinas
+                            </span>
+                        </a>
+                    </li>
+
+                    <!-- Option Users -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/collect-funds">
+                            <i data-feather="dollar-sign"></i>
+                            <span>
+                                Recaudos
+                            </span>
+                        </a>
+                    </li>
+
+                     <!-- Option Users -->
+                     <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/users">
+                            <i data-feather="users"></i>
+                            <span>
+                                Usuarios
+                            </span>
+                        </a>
+                    </li>
+
+
+
+                </ng-container>
+
+
+                <ng-container *ngIf="role == 'COACH'">
+
+                    <!-- Option Dashboard -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/dashboard">
+                            <i data-feather="home"></i>
+                            <span>
+                                Dashboard
+                            </span>
+                        </a>
+                    </li>
+
+                    <!-- Option Users -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" routerLink="/admin/customers">
+                            <i data-feather="user-plus"></i>
+                            <span>
+                                Clientes
+                            </span>
+                        </a>
+                    </li>
+
+
+                </ng-container>
+
+
+            </ul>
+
+            <!-- Image Help -->
+            <div class="sidebar-img-section" *ngIf="role != 'ADMIN'">
+                <div class="sidebar-img-content">
+                    <img class="img-fluid" src="/assets/images/side-bar.png">
+                    <h4>Necesita Ayuda?</h4>
+                    <a class="txt" href="mailto:soporte@softgym.tech" target="_blank">
+                        envianos un correo a "soporte@softgym.tech"
+                    </a>
+                    <a class="btn btn-secondary"
+                        href="https://api.whatsapp.com/send?phone=573173305016&text=hola..%20me%20pueden%20ayudar%3F"
+                        target="_blank">
+                        Escribenos
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </nav>
+
+</div>
